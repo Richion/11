@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>Let's Chat</title>
+	</head>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	<script>
+		var socket = io();
+		$(function(){
+			$('form').submit(function(e){
+				e.preventDefault();
+				socket.emit("chat",$('#o').val());
+				$('#o').val();
+				return false;
+			});
+			socket.on("chat",function(msg){
+				$('#message').append($('<li>').text(msg))		
+			
+			});
+			
+		
+		
+		
+		})
+		
+		
+		
+	</script>
+	
+	<body>
+		<ul id = "message"></ul>
+		<form>
+			<input id = "o"><button>按鈕</button>
+		</form>
+	</body>
+</html>
